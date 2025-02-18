@@ -1,22 +1,29 @@
 function electionResult(votes) {
-
     if (!Array.isArray(votes)) {
         return "Invalid";
     }
 
-
+ 
     let mangoCount = 0;
     let bananaCount = 0;
 
-    for (let vote of votes) {
-        if (vote.toLowerCase() === "mango") {
-            mangoCount++;
-        } else if (vote.toLowerCase() === "banana") {
-            bananaCount++;
+
+    for (let i = 0; i < votes.length; i++) {
+        let vote = votes[i];
+
+   
+        if (typeof vote === "string") {
+            vote = vote.toLowerCase(); 
+
+            if (vote === "mango") {
+                mangoCount++;
+            } else if (vote === "banana") {
+                bananaCount++;
+            }
         }
     }
 
-
+   
     if (mangoCount > bananaCount) {
         return "Mango";
     } else if (bananaCount > mangoCount) {

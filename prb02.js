@@ -1,18 +1,30 @@
 function validEmail(email) {
-   
     if (typeof email !== "string") {
         return "Invalid";
     }
 
-    let emailPattern = /^[^.-][a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.(com)$/;
-
-   
-    if (emailPattern.test(email)) {
-        return true;
-    } else {
+    if (!email.includes("@") || !email.endsWith(".com")) {
         return false;
     }
+
+    let atIndex = email.indexOf("@");
+    let dotComIndex = email.lastIndexOf(".com");
+
+    if (atIndex <= 0 || dotComIndex <= atIndex + 1) {
+        return false;
+    }
+
+    if (email[0] === '.' || email[0] === '-') {
+        return false;
+    }
+
+    if (email.includes(" ")) {
+        return false;
+    }
+
+    return true; 
 }
+
 
 console.log(validEmail("ferdous@gmail.com")); // true
 console.log(validEmail("lziha@gmail.com")); // true
